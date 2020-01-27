@@ -30,62 +30,57 @@ inquirer
 
 
     }
-]);
+
+    
+    
+])
 //-----------------End of rpompts for user choices-------------------////
+.then (function(response){   
+    switch (userChoice){
+        case "Movie":
+            if (userInput !=""){
+            getMovie(userInput);
+            } else getMovie("Transformers"); //Default movie
 
-//Switch statement goes here
+            break;
 
-switch (cmd) {
+         case "Song":
+                if (userInput=""){
+                    getSong(userInput);
 
-    case 'Song':
-        //write api call here for spotify
+                } else getSong("Hotel California");// Default song
 
-        break;
+                break;
 
-    case 'Movie':
-        //Write api comand here for OMBD
-        getMovie(userInput);
-
-        break;
-
-    case 'Concert':
-    //write api call for Bands in town here
-
-
-}
+        case "Concert":
+            if (userInput !=""){
+                getConcert(userInput);
+            }else getConcert("Ramstein"); //Default Concert
+        
+    }
+});
 
 
 
 
-//Run appropriate API
+
 
 //Spotify API call to the endpoint
 
-// var spotify = new Spotify({
-//     id: process.env.spotify_key,
-//     secret: spotufy_secret
-//   });
-   
-//   spotify
-//     .search({ type: 'track', query: 'All the Small Things' })
-//     .then(function(response) {
-//       console.log(response);
-//     })
-//     .catch(function(err) {
-//       console.log(err);
-//     });
-
-
-
+const getSong = str => {
+    
+}
 //Return data and write it in a
 
 //API call to OMBD
 
-const getMovie = (query) => {
+const getMovie = str => {
     axios
 
-        .get('http://www.omdbapi.com/?apikey=${process.env.ombd_key}&t=${query}')
+        .get('http://www.omdbapi.com/?apikey=${process.env.ombd_key}&t=${str}')
         .then(response =>{
-            console.log(reponse)
+            console.log(response)
         })
+        
         };
+    
