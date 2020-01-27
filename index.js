@@ -68,19 +68,22 @@ inquirer
 //Spotify API call to the endpoint
 
 const getSong = str => {
-    
+
 }
 //Return data and write it in a
 
 //API call to OMBD
 
 const getMovie = str => {
-    axios
 
-        .get('http://www.omdbapi.com/?apikey=${process.env.ombd_key}&t=${str}')
-        .then(response =>{
-            console.log(response)
-        })
+    let url ="http://www.omdbapi.com/?i=tt3896198&apikey=4f53e692"
+    axios
+    .get(url)
+        .then((response) =>{
+            console.log(response);
+        },
+         (error)=>{ console.log(error);
+        });
         
         };
     
