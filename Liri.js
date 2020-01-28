@@ -10,7 +10,7 @@ const moment = require("moment");
 //Global variables go here////////////
 let userChoice; //user category input, see prompt
 let userInput; //user search input, see prompt
-
+let todaysDate = moment().format("YYYY-MM-DD"); //Todays date for concert search
 
 //1. Capture request and create a switch statemnt
 
@@ -37,7 +37,7 @@ inquirer
         console.log(response.userChoice);
         console.log(response.userInput);
         let userChoice = response.userChoice;
-        let userInput = response.userInput;
+        let userInput = response.userInput.toLowerCase();
 
         switch (userChoice) {
             case "Movie":
@@ -49,7 +49,7 @@ inquirer
                 break;
 
             case "Song":
-                if (userInput = "") {
+                if (userInput != "") {
                     getSong(userInput);
 
                 } else getSong("Hotel California");// Default song
@@ -68,15 +68,6 @@ inquirer
 
 
 
-
-
-//Spotify API call to the endpoint
-
-// const getSong = str => {
-
-// }
-//Return data and write it in a
-
 //API call to OMBD
 
 var getMovie = (str) => {
@@ -88,7 +79,7 @@ var getMovie = (str) => {
     axios
         .get(url)
         .then((response) => {
-            console.log(response.data.Title);
+            console.log(response);
         
         },
             (error) => {
@@ -97,6 +88,8 @@ var getMovie = (str) => {
 
 };
 
+
+// Spotify API
 var getSong = (str)=> {
     var spotify = new Spotify({
         id:"625bbe361130488db88e6dc369d02114",
@@ -106,9 +99,32 @@ var getSong = (str)=> {
       spotify
       .search({ type: 'track', query: str })
       .then(function(response) {
-        console.log(response.items);
+        // console.log(response.);
+        console.log(response.tracks.items[0].name)
+        console.log(response.tracks.items[0].album.artists[0].name)
+        // console.log(response.tracks)//need to work on this one
       })
       .catch(function(err) {
         console.log(err);
       });
+
+
+      //Bands in town API
+
+
+     const getConcert = (str) => {
+         let endDate =  moment().add(15,'days').format('YYYY-MM-DD')// to add 15 days to current date..
+        let url = `https://rest.bandsintown.com/artists/${str}/events?app_id=81b0bfbbc09c1d598267b30e8fdf3514`;
+        
+        axios
+        .get(url)
+        .then((response) => {
+            console.log(response);
+        
+        },
+            (error) => {
+                console.log(error);
+            });
+
+     } 
 }
