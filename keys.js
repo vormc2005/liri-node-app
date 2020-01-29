@@ -11,7 +11,12 @@ secret: process.env.SPOTIFY_SECRET
 
   };
 
-    
+  //Bands in town
+exports.bandsintown={
+
+  app_id: process.env.API_ID
+
+};
 
 
     
