@@ -104,7 +104,7 @@ var getMovie = (str) => {
             //     if (err) {
             //       return console.log(err);
             //     }              
-            //     console.log("Success!");              
+            //     console.log("Success!");gi              
             //   });   
 
             fs.writeFile("log.txt", moviearr, function (err) {
