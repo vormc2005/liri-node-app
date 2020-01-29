@@ -6,4 +6,7 @@ If movie category is chosen, then Liri will provide following information: Title
 If user chooses a concert category, then Liri provides following information: name of the venue, venue location, date of the soonest concert.
 Liri pulls information from three different providers through API call. To be able access information user will need to get API keys for following providers:Spotify, Bands in Town and OMDB.
 
+
+![](LiriGif.gif)
+
 We hope you will enjoy LIRI.
